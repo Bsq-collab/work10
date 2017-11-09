@@ -9,14 +9,14 @@
 
 static void sighandler(int signo){
   if(signo==SIGINT){
-    char message[20]="byebyebyebye";
-    int filestuff=open("filestuff.txt",O_APPEND);
+    char message[30]="you've been SIGINTed heh\n";
+    int filestuff=open("filestuff.txt",O_APPEND|O_WRONLY);
     write(filestuff,message,sizeof(message));
     close(filestuff);
-    exit(0);
+    exit(1);
   }
   if(signo==SIGUSR1){
-    printf("PID: %d\n",getppid());
+    printf("PRINTING PARENT PID: %d\n",getppid());
   }
 }
 
